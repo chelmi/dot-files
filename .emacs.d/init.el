@@ -14,14 +14,18 @@
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
  '(column-number-mode t)
+ '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
+ '(show-paren-mode t)
+ '(show-paren-style (quote expression))
  '(size-indication-mode t))
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- )
+ '(show-paren-match ((((class color) (background dark)) (:background "SteelBlue4"))))
+ '(show-paren-mismatch ((((class color)) (:background "light salmon" :foreground "white")))))
 
 ;; use groovy-mode when file ends in .groovy or has #!/bin/groovy at start
 (autoload 'groovy-mode "groovy-mode" "Major mode for editing Groovy code." t)
