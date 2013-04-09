@@ -2,7 +2,7 @@
 
 shopt -s dotglob
 
-exclude=($0 .gitignore .git *~)
+exclude=($(basename $0) .gitignore .git *~)
 
 SOURCE="${BASH_SOURCE[0]}"
 while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
