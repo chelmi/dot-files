@@ -49,3 +49,8 @@ alias tmux='tmux -2'
 #bash configuration
 shopt -s histappend
 set -o ignoreeof #disable ctrl+D on login shell
+
+
+if [[ -r ~/.dircolors ]]; then
+    eval $(dircolors ~/.dircolors)
+fi
