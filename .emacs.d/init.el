@@ -35,3 +35,5 @@
              (groovy-electric-mode)))
 
 (set-face-attribute 'default nil :height 120)
+
+(global-linum-mode t)

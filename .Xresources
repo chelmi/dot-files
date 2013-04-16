@@ -69,3 +69,6 @@
 *color14:                 S_base1
 *color15:                 S_base3
 
+Emacs*toolBar: off
+Emacs*menuBar: off
+Emacs*verticalScrollBars: off
