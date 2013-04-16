@@ -48,3 +48,8 @@ alias hgrep='history | grep'
 #bash configuration
 shopt -s histappend
 set -o ignoreeof #disable ctrl+D on login shell
+
+
+if [[ -r ~/.dircolors ]]; then
+    eval $(dircolors ~/.dircolors)
+fi
