@@ -44,6 +44,7 @@ alias gridbash32="gridbash 32G"
 alias gridbash48="gridbash 48G"
 alias ec="emacsclient -n"
 alias hgrep='history | grep'
+alias tmux='tmux -2'
 
 #bash configuration
 shopt -s histappend
