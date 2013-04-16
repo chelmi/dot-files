@@ -2,7 +2,7 @@
 
 shopt -s dotglob
 
-exclude=($(basename $0) .gitignore .git *~)
+exclude=($(basename $0) .gitignore .git *~ .ssh_config)
 
 SOURCE="${BASH_SOURCE[0]}"
 while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
@@ -11,6 +11,22 @@ while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symli
   [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE" # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
 done
 DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+
+
+function create_link {
+    source=$1
+    target=$2
+
+    if [[ -L $target ]]; then
+	return
+    elif [[ -e $target ]]; then
+	echo "Warning: $target allready exists, skipping"
+    else
+	echo "Linking $source to $target"
+	ln -s $source $target  
+    fi
+}
+
 
 for f in $DIR/*  ; do
     #echo $f
@@ -26,17 +42,8 @@ for f in $DIR/*  ; do
 	#echo "Skipping file $f"
 	continue
     fi
-    
-    source=$f
-    target=$HOME/$(basename $f)
 
-    if [[ -L $target ]]; then
-	continue
-    elif [[ -e $target ]]; then
-	echo "Warning: $target allready exists, skipping"
-    else
-	ln -s $source $target
-	echo "Linking $source to $target"
-    
-    fi
+    create_link $f $HOME/$(basename $f)
 done
+
+create_link $DIR/.ssh_config $HOME/.ssh/config
