@@ -1,11 +1,13 @@
 (add-to-list 'load-path "~/.emacs.d/packages/color-theme-6.6.0")
 (add-to-list 'load-path "~/.emacs.d/packages/groovy-mode-2011-06-29")
+(add-to-list 'load-path "~/.emacs.d/packages/color-theme-solarized")
 
 (require 'color-theme)
+(require 'color-theme-solarized)
 (eval-after-load "color-theme"
   '(progn
      (color-theme-initialize)
-     (color-theme-deep-blue)))
+     (color-theme-solarized-dark)))
 
 
 (custom-set-variables
@@ -20,13 +22,6 @@
  '(show-paren-style (quote expression))
  '(size-indication-mode t)
  '(tool-bar-mode nil))
-(custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- '(show-paren-match ((((class color) (background dark)) (:background "SteelBlue4"))))
- '(show-paren-mismatch ((((class color)) (:background "light salmon" :foreground "white")))))
 
 ;; use groovy-mode when file ends in .groovy or has #!/bin/groovy at start
 (autoload 'groovy-mode "groovy-mode" "Major mode for editing Groovy code." t)

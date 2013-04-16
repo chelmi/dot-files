@@ -4,7 +4,7 @@ if [[ $TERM == dumb ]]; then
 fi
 
 case $TERM in
-    xterm*|screen*)
+    xterm*|screen*|gnome*|eterm*)
 	PS1="\[\033]0;\u@\h: \w\007\]\[$(tput bold)\]\\[$(tput setaf 6)\]\u@\h \[$(tput setaf 4)\]\w\n\[$(tput sgr0)\][\A - \!]$ "
         ;;
     *)
