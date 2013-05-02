@@ -35,9 +35,6 @@
              (require 'groovy-electric)
              (groovy-electric-mode)))
 
-
-(set-face-attribute 'default nil :height 100 :foundry "unknown" :family "DejaVu Sans Mono")
-
 (global-linum-mode t)
 
 (require 'package)
@@ -46,3 +43,6 @@
     '("marmalade" .
       "http://marmalade-repo.org/packages/"))
 (package-initialize)
+
+(when (file-readable-p "~/.local.emacs")
+  (load-file "~/.local.emacs"))
