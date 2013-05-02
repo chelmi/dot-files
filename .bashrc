@@ -33,7 +33,8 @@ fi
 export HISTTIMEFORMAT="[%d/%m/%y - %T] "
 
 #aliases
-alias sps='ps --forest --user=michel_metzger -o pid,pgid,args'
+alias sps='ps --forest -o pid,pgid,args'
+alias ssps='ps --forest --user=michel_metzger -o pid,pgid,args'
 alias ls='ls --color=auto'
 alias h='history'
 
