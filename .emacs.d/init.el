@@ -1,3 +1,4 @@
+(add-to-list 'load-path "~/.emacs.d/packages/")
 (add-to-list 'load-path "~/.emacs.d/packages/color-theme-6.6.0")
 (add-to-list 'load-path "~/.emacs.d/packages/groovy-mode-2011-06-29")
 (add-to-list 'load-path "~/.emacs.d/packages/color-theme-solarized")
@@ -34,6 +35,14 @@
              (require 'groovy-electric)
              (groovy-electric-mode)))
 
-(set-face-attribute 'default nil :height 120)
+
+(set-face-attribute 'default nil :height 100 :foundry "unknown" :family "DejaVu Sans Mono")
 
 (global-linum-mode t)
+
+(require 'package)
+;; Any add to list for package-archives (to add marmalade or melpa) goes here
+(add-to-list 'package-archives 
+    '("marmalade" .
+      "http://marmalade-repo.org/packages/"))
+(package-initialize)
