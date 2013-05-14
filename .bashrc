@@ -14,16 +14,9 @@ case $TERM in
         ;;
 esac
 
-export PATH=$HOME/bin:$PATH
 export LANG=en_US.UTF8
 export EDITOR=vi
 export SVN_EDITOR=vi
-
-#UNV specific init
-if [[ $(hostname) = grid-unv* ]]; then
-    export TMP_DIR=/work
-    export GRADLE_USER_HOME=$TMP_DIR/.michel_metzger.gradle
-fi
 
 if [[ -r ~/.local.bashrc ]]; then
     source ~/.local.bashrc
@@ -37,14 +30,6 @@ alias sps='ps --forest -o pid,pgid,args'
 alias ssps='ps --forest --user=michel_metzger -o pid,pgid,args'
 alias ls='ls --color=auto'
 alias h='history'
-
-function gridbash {
-    qrsh -now n -pty y -l himem -l h_vmem=$1,mem_free=$1 -j y -V -cwd 'bash'
-}
-
-alias gridbash24="gridbash 24G"
-alias gridbash32="gridbash 32G"
-alias gridbash48="gridbash 48G"
 alias ec="emacsclient -n"
 alias hgrep='history | grep'
 
@@ -52,7 +37,16 @@ alias hgrep='history | grep'
 shopt -s histappend
 set -o ignoreeof #disable ctrl+D on login shell
 
+PATH=$HOME/bin:$PATH
 
 if [[ -r ~/.dircolors ]]; then
     eval $(dircolors ~/.dircolors)
 fi
+
+Cleanup PATH and LD_PATH duplicates...
+if [[ -x /bin/awk ]]; then
+    export PATH=$(echo "$PATH" | /bin/awk -F: '{for (i=1;i<=NF;i++) { if ( !x[$i]++ ) printf("%s:",$i); }}')
+    echo "PATH=$PATH"
+    export LD_LIBRARY_PATH=$(echo "$LD_LIBRARY_PATH" | /bin/awk -F: '{for (i=1;i<=NF;i++) { if ( !x[$i]++ ) printf("%s:",$i); }}')
+fi
+
