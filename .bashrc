@@ -43,10 +43,9 @@ if [[ -r ~/.dircolors ]]; then
     eval $(dircolors ~/.dircolors)
 fi
 
-Cleanup PATH and LD_PATH duplicates...
+#Cleanup PATH and LD_PATH duplicates...
 if [[ -x /bin/awk ]]; then
     export PATH=$(echo "$PATH" | /bin/awk -F: '{for (i=1;i<=NF;i++) { if ( !x[$i]++ ) printf("%s:",$i); }}')
-    echo "PATH=$PATH"
     export LD_LIBRARY_PATH=$(echo "$LD_LIBRARY_PATH" | /bin/awk -F: '{for (i=1;i<=NF;i++) { if ( !x[$i]++ ) printf("%s:",$i); }}')
 fi
 
