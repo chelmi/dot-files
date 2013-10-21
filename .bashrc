@@ -5,6 +5,7 @@ else
     export TERM=xterm-16color
 fi
 
+# Set prompt
 case $TERM in
     xterm*|screen*|gnome*|eterm*)
         PS1="\[\033]0;\u@\h: \w\007\]\\[$(tput setaf 9)\]\u@\h \[$(tput setaf 4)\]\w\n\[$(tput sgr0)\][\A - \!]$ "
@@ -14,9 +15,8 @@ case $TERM in
         ;;
 esac
 
-export LANG=en_US.UTF8
-export EDITOR=vi
-export SVN_EDITOR=vi
+export EDITOR=emacs
+export SVN_EDITOR=emacs
 
 if [[ -r ~/.local.bashrc ]]; then
     source ~/.local.bashrc
@@ -27,7 +27,7 @@ export HISTTIMEFORMAT="[%d/%m/%y - %T] "
 
 #aliases
 alias sps='ps --forest -o pid,pgid,args'
-alias ssps='ps --forest --user=michel_metzger -o pid,pgid,args'
+alias ssps='ps --forest --user=$USER -o pid,pgid,args'
 alias ls='ls --color=auto'
 alias h='history'
 alias ec="emacsclient -n"
@@ -43,7 +43,7 @@ if [[ -r ~/.dircolors ]]; then
     eval $(dircolors ~/.dircolors)
 fi
 
-#Cleanup PATH and LD_PATH duplicates...
+# Cleanup PATH and LD_PATH duplicates
 if [[ -x /bin/awk ]]; then
     export PATH=$(echo "$PATH" | /bin/awk -F: '{for (i=1;i<=NF;i++) { if ( !x[$i]++ ) printf("%s:",$i); }}')
     export LD_LIBRARY_PATH=$(echo "$LD_LIBRARY_PATH" | /bin/awk -F: '{for (i=1;i<=NF;i++) { if ( !x[$i]++ ) printf("%s:",$i); }}')

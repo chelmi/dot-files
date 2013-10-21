@@ -1,0 +1,6 @@
+[user]
+	name = Michel Metzger
+[core]
+	editor = emacs
+[color]
+	ui = true
