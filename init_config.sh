@@ -45,3 +45,5 @@ for f in $DIR/*  ; do
 
     create_link $f $HOME/$(basename $f)
 done
+
+create_link $DIR/.config/i3 $HOME/.config
