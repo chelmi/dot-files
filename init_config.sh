@@ -2,7 +2,7 @@
 
 shopt -s dotglob
 
-exclude=($(basename $0) .gitignore .git '.*~' .ssh_config)
+exclude=($(basename $0) .gitignore .git '.*~' .ssh_config .config)
 
 SOURCE="${BASH_SOURCE[0]}"
 while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
@@ -23,7 +23,7 @@ function create_link {
 	echo "Warning: $target allready exists, skipping"
     else
 	echo "Linking $source to $target"
-	#ln -s $source $target  
+	ln -s $source $target  
     fi
 }
 
@@ -46,4 +46,4 @@ for f in $DIR/*  ; do
     create_link $f $HOME/$(basename $f)
 done
 
-create_link $DIR/.config/i3 $HOME/.config
+create_link $DIR/.config/i3 $HOME/.config/i3
